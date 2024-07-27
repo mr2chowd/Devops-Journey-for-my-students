@@ -14,14 +14,15 @@ k8s automates the deployment of your containerised images and helps the same to 
 
 The only prequisite in learning kubernetes is docker or in general terms ,"Containerization." As long as you know the basics of containers, you should be good.
 
-For example , the concepts of Docker you need are: 
+### Prerequisites
+To learn Kubernetes, you should have a basic understanding of Docker or containerization. Essential Docker concepts include:
+- Why containers are lightweight
+- Differences between containers and virtual machines
+- Networking isolation
+- Namespace isolation
 
-- Why are containers light weight in nature ? 
-- Why are they different than a virtual machine ? 
-- what is your networking isolation ? 
-- What is a namespace isolation? 
 
-#### First question some people ask me is what is the difference between docker and kubernetes? 
+#### One of the common questions:  what is the difference between docker and kubernetes? 
 
 Docker is a container platform. Kubernetes is nothing but a container orchestrator platform. 
 
@@ -29,13 +30,13 @@ If I may go into detail, if you have worked with containers before. Containers a
 
 Lets think about some problems that kubernetes solves ? 
 
-- One I could think of is, lets say you have 99 containers ine ONE single host, due to lack of memory 100th one might just crash as linux system has a priority order. 
+    - One I could think of is, lets say you have 99 containers in ONE single host, due to lack of memory 100th one might just crash as linux system has a priority order. 
 
-- Lets say another problem, where someone has killed one of your containers and your app becomes not accesible. Unless some developer comes and starts a new container for the app, it wont work. So auto healing feature of kubernetes can help where it automatically starts a new container for your app. 
+    - Lets say another problem, where someone has killed one of your containers and your app becomes not accesible. Unless some developer comes and starts a new container for the app, it wont work. So auto healing feature of kubernetes can help where it automatically starts a new container for your app. 
 
-- Lets say you created one container which maximum capacity of 5gb ram. Lets say your user load increases all of a sudden, what you can do is manually create replica container or you can just make it automatic through kubernetes. Which is in short Auto-Scaling feature.You would also need load balancing to divide the new work load amongts various containers. This is another feature missing in docker.
+    - Lets say you created one container which has maximum capacity of 5gb ram. Lets say your user load increases all of a sudden, what you can do is manually create replica container or you can just make it automatic through kubernetes. Which is in short Auto-Scaling feature. You would also need load balancing to divide the new work load amongts various containers. This is another feature missing in docker.  
 
-Docker does not provide any enterprise level support. Now what do I mean by that? Let's say you don't know Docker at all. What are the minimal things that you require for running your application even on a virtual machine, okay? So it's not like running your college project. If you want to run your college project, you can just run it on your laptop. You need a load banlancer.Without load balancer, your application is not enterprise ready. Without firewall, your application is not enterprise ready. Or, you know, there are some such parameters. Let's keep writing them. Okay, and what is the other thing? Your application has to auto scale. Or at least it has to support scaling. 
+Docker does not provide any enterprise level support. Now what do I mean by that? Let's say you don't know Docker at all. What are the minimal things that you require for running your application even on a virtual machine, okay? So it's not like running your college project. If you want to run your college project, you can just run it on your laptop. You need a load banlancer. Without load balancer, your application is not enterprise ready. Without firewall, your application is not enterprise ready. Or, you know, there are some such parameters. Okay, and what is the other thing? Your application has to auto scale. Or at least it has to support scaling. 
 
 So 
 
@@ -50,29 +51,40 @@ So
 Docker do not support these enterprise level solutions. All of these problems are solved by Kubernetes
 
 
+## How Kubernetes Solves These Problems
+Kubernetes operates as a cluster, which is a group of nodes. Unlike Docker, which typically runs on a single machine, Kubernetes uses a master/node architecture. The master node acts as the brain, while the other nodes execute the containers. This architecture provides several advantages:
 
-### HOW WILL KUBERNETES SOLVE THESE PROBLEMS ? 
+- **Resource Allocation**: Containers are distributed across nodes, preventing resource contention.
+- **Horizontal Pod Autoscaler (HPA)**: Automatically scales the number of pods based on load. For instance, if a container's load reaches 80% of its capacity, Kubernetes can spin up additional containers to handle the traffic.
 
-By default, Kubernetes is a cluster. What is a cluster? Cluster is basically group of nodes. So previously when we installed Docker, we just installed on one personal laptop, or we just installed on one simple EC2 instance. 
+While Kubernetes does not yet fully support advanced load balancing, ongoing development by the CNCF aims to address this.
 
-Kubernetes is generally installed in master/node architecture. There will be one brain which is the master and the rest of them will be the nodes. What is the advantage if you install kubernetes in cluster ? What is the advantage ? 
+### Detailed Problem-Solving with Kubernetes
+1. **Resource Management**:
+    - Kubernetes uses a cluster to manage resources efficiently. If a node is overloaded, Kubernetes will automatically shift containers to other nodes.
+    - Example: If Node A has high CPU usage, Kubernetes can move some containers to Node B.
 
-The problem we had in number 1 point where if you have multiple running containers, and if the container number 1 is overloaded , it will impact container 100th. In this scenario Kubernetes will just run the container on a different node with its own resource allocation.
+2. **Auto-Healing**:
+    - Kubernetes continuously monitors the health of nodes and containers. If a container fails, it automatically restarts it.
+    - Example: If a container running your web application crashes, Kubernetes will restart it without manual intervention.
 
-Kubernetes also supports something called as HPA, which is horizontal pod autoscaler, okay? So using which you can directly say that, okay, whenever there is a load, just keep increase. Okay, if one of my container is receiving a threshold of 80%, so whenever you see that the load is reaching threshold of 80%, just spin up one more container, okay? So in such cases, it will keep up spinning containers. 
+3. **Auto-Scaling**:
+    - Kubernetes supports both vertical and horizontal scaling. It can automatically increase the number of pods based on CPU and memory usage.
+    - Example: If your web application experiences a surge in traffic, Kubernetes will automatically add more instances to handle the load.
 
-Does Kubernetes solve advanced load balancing ? 
+4. **Load Balancing**:
+    - Kubernetes includes built-in load balancing to distribute network traffic to ensure no single container is overwhelmed.
+    - Example: Incoming requests to your service are evenly distributed across all available pods.
 
-No It does not, people at cncf are developing to make it 100 percent to solve all that you can do in virutal machines. 
+## Architecture of Kubernetes
+Kubernetes offers several advantages over Docker:
+- **Cluster-Based Architecture**: Distributes workloads across multiple nodes for better resource utilization and high availability.
+- **Auto-Scaling and Healing**: Automatically adjusts the number of running containers and restarts failed containers.
+- **Enterprise-Level Support**: Provides features such as load balancing, firewalls, API gateways, and support for managing secrets and configurations.
 
-# Architecture of Kubernetes
+By leveraging these features, Kubernetes provides a robust solution for managing containerized applications in production environments.
 
-As I have talked in my previous class, Kubernetes has four advantage over Docker
-
-- Cluster 
-- Auto scaling and healing 
-- Enterprise level support 
-
+---
 ## Worker Nodes or Nodes
 As a developer or K8s administrator most of the time you will deal with worker nodes, whether you have to deploy your containerized app or you have to autoscale it, or you have to roll out any new app update on your production-grade server, you will often deal with worker nodes.
 
