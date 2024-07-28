@@ -120,7 +120,7 @@ Some of the container runtime examples are,
 #### Kubelet:
 kubelet is a primary node-agent of the worker node, which interacts with both node and the container in the given worker node.
 
-The kubelet is responsible for
+*The kubelet is responsible for* :
 
 Maintaining a set of pods, which are composed of one or more containers, on a local system.
 For registering a node with a Kubernetes cluster, sending events and pod status, and reporting resource utilization.
@@ -282,9 +282,6 @@ We will look into the concepts of each component listed above and will do small 
 - [Pasting Text Into VIM](#pasting-text-into-vim)
 - [`tmux`](#tmux)
 - [Mouse Support (Optional)](#mouse-support-optional)
-- [Preperation](#preperation)
-- [Study Resources](#study-resources)
-- [Practice](#practice)
 - [Installation](#installation)
   - [`containerd` Installation (if needed)](#containerd-installation-if-needed)
   - [`kubelet`, `kubeadm`, and `kubectl` CLI tools](#kubelet-kubeadm-and-kubectl-cli-tools)
@@ -497,33 +494,6 @@ These steps must be done outside of `tmux`
 
 3. Reload tmux configuration
     - `tmux source .tmux.conf`
-
-
-
-
-
-
-
-
-## Preperation
-
-### Study Resources
-
-- [Official Kubernetes Documentation](https://kubernetes.io/docs/home/)
-- [A Cloud Guru Course with Practice Exam](https://acloudguru.com/course/certified-kubernetes-administrator-cka)
-- [The Kubernetes Book - Nigel Poulton](https://www.amazon.com/Kubernetes-Book-Nigel-Poulton/dp/1521823634)
-- [CKA Tips and Tricks](https://youtu.be/TJSAcwUP0pE)
-
-### Practice
-- [Play with Kubernetes](https://labs.play-with-k8s.com/)
-- [killer.sh Practice questions and environment](https://killer.sh/cka)
-- [Practice questions YouTube series](https://youtu.be/uSbqo4X9Zoo)
-- [CKA Excample Questions](https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d)
-- [GitHub gist of parctive questions](https://gist.github.com/texasdave2/8f4ce19a467180b6e3a02d7be0c765e7)
-- [CKAD-Practice-Questions](https://github.com/bbachi/CKAD-Practice-Questions)
-- [More CKAD-Practice-Questions](https://github.com/dgkanatsios/CKAD-exercises)
-
-
 
 
 # Installation
