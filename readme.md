@@ -113,9 +113,9 @@ Every Microservice module(micro-app) you deploy is packaged into a single pod th
 
 Some of the container runtime examples are,
 
-containerd
-CRI-O
-Docker
+  - containerd
+  - CRI-O
+  - Docker
 
 #### Kubelet:
 kubelet is a primary node-agent of the worker node, which interacts with both node and the container in the given worker node.
@@ -785,7 +785,7 @@ These commands are run on the control plane node.
 
 - Draining a node
     - `kubectl drain <NODE NAME>`
-    - `--igrnoe-daemonsets` - Ignore DaemeonSets pods tied to node
+    - `--ignore-daemonsets` - Ignore DaemeonSets pods tied to node
     - `--force` - Ignore error messages such as DaemonSet-managed pods
 
 - After maintenance is complete, allow pods to run on node again
